@@ -65,7 +65,9 @@ type ClanDistrictData struct {
 
 type ClanDistrictDataList []ClanDistrictData
 
-type ClanList []Clan
+type ClanList struct {
+	Clans []Clan `json:"items"`
+}
 
 type ClanMember struct {
 	League            League            `json:"league"`
@@ -89,6 +91,10 @@ type ClanMemberList []ClanMember
 
 type ClanSearchQuery struct {
 	query map[string]string
+}
+
+func NewClanSearchQuery() ClanSearchQuery {
+	return ClanSearchQuery{query: make(map[string]string)}
 }
 
 func (q *ClanSearchQuery) SetName(name string) {
