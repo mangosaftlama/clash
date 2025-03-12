@@ -7,34 +7,38 @@ import (
 	"strconv"
 )
 
+type CapitalLeague struct {
+	// JsonLocalizedName
+	Name string `json:"name"`
+	Id   int    `json:"id"`
+}
+
+type WarLeague struct {
+	// JsonLocalizedName
+	Name string `json:"name"`
+	Id   int    `json:"id"`
+}
+
 type Clan struct {
-	WarLeague struct {
-		// JsonLocalizedName
-		Name string `json:"name"`
-		Id   int    `json:"id"`
-	} `json:"warLeague"`
-	CapitalLeague struct {
-		// JsonLocalizedName
-		Name string `json:"name"`
-		Id   int    `json:"id"`
-	} `json:"capitalLeague"`
-	MemberList ClanMemberList `json:"memberList"`
-	Tag        string         `json:"tag"`
+	WarLeague     WarLeague      `json:"warLeague"`
+	CapitalLeague CapitalLeague  `json:"capitalLeague"`
+	MemberList    ClanMemberList `json:"memberList"`
+	Tag           string         `json:"tag"`
 	// Enum: [ UNKNOWN, ALWAYS, MORE_THAN_ONCE_PER_WEEK, ONCE_PER_WEEK, LESS_THAN_ONCE_PER_WEEK, NEVER, ANY ]
-	WarFrequency                string `json:"warFrequency"`
-	ClanLevel                   int
-	WarWinStreak                int
-	WarWins                     int
-	WarTies                     int
-	WarLosses                   int
-	ClanPoints                  int
-	ClanBuilderBasePoints       int
-	ClanCapitalPoints           int
-	RequiredTrophies            int
-	RequiredBuilderBaseTrophies int
-	RequiredTownhallLevel       int
-	IsFamilyFriendly            bool
-	IsWarLogPublic              bool
+	WarFrequency                string    `json:"warFrequency"`
+	ClanLevel                   int       `json:"clanLevel"`
+	WarWinStreak                int       `json:"warWinStreak"`
+	WarWins                     int       `json:"warWins"`
+	WarTies                     int       `json:"warTies"`
+	WarLosses                   int       `json:"warLosses"`
+	ClanPoints                  int       `json:"clanPoints"`
+	ClanBuilderBasePoints       int       `json:"clanBuilderBasePoints"`
+	ClanCapitalPoints           int       `json:"clanCapitalPoints"`
+	RequiredTrophies            int       `json:"requiredTrophies"`
+	RequiredBuilderBaseTrophies int       `json:"requiredBuilderBaseTrophies"`
+	RequiredTownhallLevel       int       `json:"requiredTownhallLevel"`
+	IsFamilyFriendly            bool      `json:"isFamilyFriendly"`
+	IsWarLogPublic              bool      `json:"isWarLogPublic"`
 	ChatLanguage                Language  `json:"chatLanguage"`
 	Labels                      LabelList `json:"labels"`
 	Name                        string    `json:"name"`
