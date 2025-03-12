@@ -62,18 +62,9 @@ type PlayerRole string
 type Player struct {
 	playerTag string
 	// League
-	League struct {
-		// JsonLocalizedName
-		Name     string `json:"name"`
-		Id       int    `json:"id"`
-		IconUrls any    `json:"iconUrls"`
-	} `json:"league"`
+	League League `json:"league"`
 	// BuilderBaseLeague
-	BuilderBaseLeague struct {
-		// JsonLocalizedName
-		Name string `json:"name"`
-		Id   int    `json:"id"`
-	} `json:"builderBaseLeague"`
+	BuilderBaseLeague BuilderBaseLeague `json:"builderBaseLeague"`
 	// PlayerClan
 	Clan PlayerClan `json:"clan"`
 	// Enum: [ NOT_MEMBER, MEMBER, LEADER, ADMIN, COLEADER ]
@@ -89,12 +80,7 @@ type Player struct {
 	HeroEquipment       PlayerItemLevelList    `json:"heroEquipment"`
 	Spells              PlayerItemLevelList    `json:"spells"`
 	// LabelList
-	Labels []struct {
-		// Label
-		Name     string `json:"name"`
-		Id       int    `json:"id"`
-		IconUrls any    `json:"iconUrls"`
-	} `json:"labels"`
+	Labels                   LabelList                     `json:"labels"`
 	Tag                      string                        `json:"tag"`
 	Name                     string                        `json:"name"`
 	ExpLevel                 int                           `json:"expLevel"`
