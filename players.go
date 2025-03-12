@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"net/url"
 )
 
 type PlayerAchievementProgress struct {
@@ -117,7 +118,7 @@ type VerifyTokenResponse struct {
 }
 
 func (c Client) GetPlayer(playerTag string) (*Player, *ClientError, error) {
-	url := "https://api.clashofclans.com/v1/players/" + playerTag
+	url := "https://api.clashofclans.com/v1/players/" + url.QueryEscape(playerTag)
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
