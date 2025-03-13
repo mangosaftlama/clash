@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"net/url"
 	"strconv"
 )
 
@@ -139,6 +140,36 @@ func (q *ClanSearchQuery) SetBefore(before string) {
 
 func (q *ClanSearchQuery) SetLabelIds(labelIds string) {
 	q.query["labelIds"] = labelIds
+}
+
+func (c Client) GetClan(clanTag string) (*Clan, *ClientError, error) {
+	url := "https://api.clashofclans.com/v1/clans/" + url.QueryEscape(clanTag)
+
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+	req.Header = c.DefaultHeader()
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return nil, nil, err
+	}
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch resp.StatusCode {
+	case 200:
+		resp := &Clan{}
+		err = json.Unmarshal(body, resp)
+		return resp, nil, err
+	case 400, 403, 404, 429, 500, 503:
+		clientErr := &ClientError{}
+		err = json.Unmarshal(body, clientErr)
+		return nil, clientErr, err
+	}
+	return nil, nil, nil
 }
 
 func (c Client) SearchClans(query ClanSearchQuery) (*ClanList, *ClientError, error) {

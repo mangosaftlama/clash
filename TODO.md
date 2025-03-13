@@ -11,7 +11,7 @@
 |GET |/clans/{clanTag}/warlog                |TODO |
 |GET |/clans                                 |DONE |
 |GET |/clans/{clanTag}/currentwar            |TODO |
-|GET |/clans/{clanTag}                       |TODO |
+|GET |/clans/{clanTag}                       |DONE |
 |GET |/clans/{clanTag}/members               |TODO |
 |GET |/clans/{clanTag}/capitalraidseasons    |TODO |
 
